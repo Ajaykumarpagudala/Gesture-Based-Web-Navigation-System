@@ -1,0 +1,701 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* white background */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* white background */
+    color: #333333; /* dark text color */
+    padding: 20px;
+}
+
+header h1.logo {
+    margin: 0;
+    color: #008080; /* teal color for the logo */
+    font-family: 'Pacifico', cursive; /* Use Pacifico font for the logo */
+}
+#hotel-name{
+    font-size:x-large;
+}
+
+.profile-container {
+    position: relative;
+}
+
+.profile-button {
+    background-color: #008080; /* teal color */
+    color: #ffffff; /* white text color */
+    border: none;
+    border-radius: 50%; /* Circle shape */
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.profile-dropdown a:hover {
+    background-color: #f4f4f4; /* Light gray background on hover */
+}
+
+.profile-container:hover .profile-dropdown {
+    display: block;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 0;
+    background-color: #ffffff; /* white background */
+}
+
+/* Oval Search Panel */
+.oval-search-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px; /* Oval shape */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2); /* Increased shadow effect */
+    padding: 20px;
+    width: 60%; /* 60% of the width */
+    margin: auto; /* Center the search panel */
+    background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+}
+
+.oval-input {
+    margin: 5px;
+    border: none; /* Remove border */
+    background-color: transparent; /* Transparent background */
+    padding: 15px; /* Adjust padding for better appearance */
+    width: 250px; /* Set width of input */
+    height: 50px; /* Set height of input */
+    border-radius: 25px; /* Oval shape */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+    font-size: 16px; /* Font size */
+    color: #555; /* Light text color */
+}
+
+.oval-input.destination-input::placeholder {
+    color: #999; /* Light placeholder text color */
+}
+
+.oval-input.checkin-input::placeholder,
+.oval-input.checkout-input::placeholder {
+    color: #999; /* Light placeholder text color */
+}
+
+.oval-input:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
+}
+
+.oval-button {
+    border: none; /* Remove border */
+    border-radius: 50%; /* Circle shape */
+    padding: 15px;
+    background-color: #008080; /* Teal color */
+    color: #ffffff; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.oval-button:hover {
+    background-color: #005353; /* Darker teal color on hover */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
+}
+
+/* Translucent line separator */
+.separator {
+    height: 50px; 
+    width: 2px; 
+    background-color: rgba(0, 0, 0, 0.1); 
+    margin: 0 10px;
+}
+
+.contact-link {
+    color: inherit; /* Inherit text color */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Image Gallery Styles */
+.image-gallery {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.image-container {
+    position: relative;
+    text-align: center;
+    width: calc(25% - 20px);
+    margin: 0 5px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+}
+
+.image-info {
+    position: relative;
+    text-align:left;
+    /*background-color: rgba(245, 239, 239, 0.8);*/
+    padding: 10px;
+    border-radius: 5px;
+    color:#090909;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.image-info h3,
+.image-info p {
+    margin: 5px 0;
+}
+
+/* Footer Styles */
+.footer {
+    text-align: center;
+    bottom:0; /* Transparent background color */ /* Add padding to increase visibility */
+    margin-bottom: 0;
+}
+
+/* styles.css */
+
+/* Oval Search Panel */
+.oval-input:focus,
+.oval-button:focus {
+    outline: none; /* Remove outline when focused */
+}
+/* styles.css */
+
+/* Oval Search Panel */
+.oval-search-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px; /* Oval shape */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2); /* Increased shadow effect */
+    padding: 20px;
+    width: 60%; /* 60% of the width */
+    max-width: 600px; /* Set a maximum width to prevent overflow */
+    margin: auto; /* Center the search panel */
+    background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+}
+
+.oval-input {
+    margin: 5px;
+    border: none; /* Remove border */
+    background-color: transparent; /* Transparent background */
+    padding: 15px; /* Adjust padding for better appearance */
+    width: calc(100% - 110px); /* Set width of input, considering the button width and separators */
+    max-width: 250px; /* Set a maximum width to prevent overflow */
+    height: 50px; /* Set height of input */
+    border-radius: 25px; /* Oval shape */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+    font-size: 16px; /* Font size */
+    color: #555; /* Light text color */
+}
+
+.oval-button {
+    border: none; /* Remove border */
+    border-radius: 50%; /* Circle shape */
+    padding: 15px;
+    min-width: 70px; /* Set a minimum width for the button */
+    background-color: #008080; /* Teal color */
+    color: #ffffff; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.separator {
+    height: 50px; /* Set height */
+    width: 2px; /* Set width */
+    background-color: rgba(0, 0, 0, 0.1); /* Translucent black color */
+    margin: 0 10px; /* Adjust margin for spacing */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .oval-search-panel {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+}
+/* Oval Search Panel */
+.oval-search-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px; /* Oval shape */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2); /* Increased shadow effect */
+    padding: 20px;
+    width: 60%; /* 60% of the width */
+    max-width: 600px; /* Set a maximum width to prevent overflow */
+    margin: auto; /* Center the search panel */
+    background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+}
+
+.oval-input {
+    margin: 5px;
+    border: none; /* Remove border */
+    background-color: transparent; /* Transparent background */
+    padding: 15px; /* Adjust padding for better appearance */
+    width: calc(100% - 110px); /* Set width of input, considering the button width and separators */
+    max-width: 250px; /* Set a maximum width to prevent overflow */
+    height: 50px; /* Set height of input */
+    border-radius: 25px; /* Oval shape */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+    font-size: 16px; /* Font size */
+    color: #555; /* Light text color */
+}
+
+.oval-button {
+    border: none; /* Remove border */
+    border-radius: 50%; /* Circle shape */
+    padding: 15px;
+    min-width: 70px; /* Set a minimum width for the button */
+    background-color: #008080; /* Teal color */
+    color: #ffffff; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.separator {
+    height: 50px; /* Set height */
+    width: 2px; /* Set width */
+    background-color: rgba(0, 0, 0, 0.1); /* Translucent black color */
+    margin: 0 10px; /* Adjust margin for spacing */
+}
+
+/* Hover effect */
+.oval-input:hover,
+.oval-button:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
+}
+/*.large-image {
+    position: relative;
+    display: inline-block;
+}
+
+.image-navigation-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1;
+}
+
+#previous-button {
+    left: 0;
+}
+
+#next-button {
+    right: 0;
+}*/
+/* Grid container */
+/* Grid container */
+/*
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center; 
+    align-items: center;
+    padding-left: 470px;
+}
+*/
+
+
+/* Large image */
+/* Large image */
+/* Large image */
+/* Large image */
+.large-image img,
+.small-image img {
+    width: auto; /* Allow the width to adjust based on the fixed height */
+    height: 480px; /* Set a fixed height for all images */
+    object-fit: cover; /* Ensure the image covers the entire container */
+    border-radius: 15px; /* Add rounded corners to the images */
+}
+
+/* Add this CSS to your existing styles.css file or include it in your <head> section */
+/* Line 83 */
+/* Line 83 */
+.large-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 80%; /* Limit the maximum width of the image */
+    margin: auto; /* Center the image horizontally */
+    height: auto; /* Allows the image to scale proportionally */
+    margin-top: 50px; /* Adjust as needed */
+}
+
+/* Line 89 */
+.image-navigation-button {
+    position: absolute;
+    top: 50%;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1;
+    border-radius: 50%;
+}
+
+/* Line 92 */
+#previous-button {
+    left: 10px; /* Adjust the left position as needed */
+    transform: translateY(-50%);
+}
+
+/* Line 96 */
+#next-button {
+    right: 10px; /* Adjust the right position as needed */
+    transform: translateY(-50%);
+}
+
+/* Line 100 */
+/*__------------------------------------------*/
+/* Add this CSS to your existing styles.css file or include it in your <head> section */
+
+/* Line 100 */
+.grid-container {
+    display: flex;
+    justify-content: center; /* Center the grid horizontally */
+    align-items: center; /* Center the grid vertically */
+    height: 80vh; /* Adjust as needed */
+}
+
+/*-----------------------------------------------------*/
+/* Box for booking */
+.booking-details {
+    display: flex;
+    justify-content: right; /* Align to the right */
+    align-items: right; /* Align to the right */
+    margin-top: 20px;
+}
+
+.booking-box {
+    color: black;
+    padding: 40px; /* Increased padding */
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 300px; /* Increased width */
+    height: 400px; /* Increased height */
+    margin-right: 30px;
+    margin-top: auto;
+    margin-bottom: 100px; /* Add margin at the bottom for spacing */
+    margin-top: -50px; /* Adjust this value to match the desired height */
+}
+
+.booking-box h3 {
+    font-weight: bold;
+}
+
+.booking-box .rent {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.booking-box p {
+    margin-bottom: 10px;
+}
+
+.booking-box .check-in-date,
+.booking-box .check-out-date {
+    font-style: italic;
+}
+
+.booking-box button.reserve-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #005353;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.booking-box button.reserve-button:hover {
+    background-color: #008080;
+}
+
+.date-pick {
+    display: flex;
+}
+
+.date-pick input {
+    margin-right: 10px; /* Adjust spacing between inputs as needed */
+}
+
+/*-----------------------------------------------------*/
+/* Amenities styles */
+
+/*.amenities {
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+    margin-top:-200px;
+    margin-bottom: 120px;
+}
+
+.amenities svg {
+    margin-right: 5px; 
+}
+
+.amenities span {
+    margin-right: 5px;
+}*/
+.amenities {
+    margin-top: -500px;
+}
+
+.amenities h2 {
+    font-size: 1.5em;
+}
+
+.amenities-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 1;
+    min-width: 10px; /* Adjust as needed */
+    margin-right: 20px; /* Adjust spacing between columns */
+}
+
+.amenities-container .column:last-child {
+    margin-right: 800px; /* Remove right margin from last column */
+}
+
+.amenities-container h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.amenities-container .amenities {
+    margin-top: 10px;
+}
+
+.amenities-container .amenities:last-child {
+    margin-bottom: 20; /* Remove bottom margin from last amenity */
+}
+/* the changes are this */
+/*ends here */
+@media screen and (max-width: 768px) {
+    .column {
+        flex-basis: 100%; /* Full width for small screens */
+        margin-right: 0; /* No margin between columns */
+        margin-bottom: 20px; /* Add bottom margin to separate columns */
+    }
+}
+#description {
+    margin-top: 50px;
+    max-width: 800px; /* Add some padding to the sides for better readability */
+}
+
+.highlight {
+    font-weight: bold;
+}
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+    #description {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 20px;
+        max-width: 90%; /* Adjust the maximum width for smaller screens */
+    }
+}
+.gesturebutton{
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 950px;
+    border-color: #008080;
+    border-radius: 15px;
+}
+.large-image{
+        height: 26.190rem;
+    
+        position: relative;
+        width: 78%;
+        display: block;
+        margin: 0 auto;
+        margin-left: 12%;
+        overflow: hidden;
+        
+      border: 2px solid #ebb47a;
+      border-radius: 10px; 
+}
+canvas{
+    width: 100%;
+}
+#logout{
+
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    width: 80px;
+    height: 30px;
+}
+#logout:hover{
+    border-color: #008080;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    transform: scale(1.1);
+}
+
+
+/* Modal styles */
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*border-radius: 50px;*/
+    background-color: rgba(255, 255, 255, 0.5); /* Change the opacity value to adjust the transparency level (0 is fully transparent, 1 is fully opaque)*/
+    padding-top: 60px;
+}
+
+/* ... other CSS ... */
+
+/* ... other CSS ... */
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #008080;
+    margin: 5% auto; 
+    padding: 20px;
+    border: none;
+    border-radius: 70px;
+    width: 60%; 
+    color: white;
+    position: relative; /* To position buttons relative to this container */
+}
+
+.modal-content button { /* Style all buttons within the modal */
+    background-color: transparent; /* No background color */
+    border: none;
+    border-radius: 50%; /* Make buttons circular */
+    font-size: 30px; /* Adjust font size as needed */
+    padding: 10px; /* Adjust padding as needed */
+    cursor: pointer;
+    position: absolute; /* Position buttons absolutely */
+    bottom: 10px; /* Place buttons at the bottom */
+    color: white; /* Set button text color to white */
+    transition: transform 0.2s ease;
+}
+
+.modal-content button:hover {
+    transform: scale(1.2); /* Magnify the button on hover */
+    background-color: rgba(255, 255, 255, 0.2); /* Add a subtle hover effect */
+}
+
+.modal-content button:first-of-type { /* Style for the left arrow button */
+    left: 10px; /* Place it on the left */
+}
+
+.modal-content button:nth-of-type(2) { /* Style for the right arrow button */
+    right: 10px; /* Place it on the right */
+}
+
+#gestureImage {
+    text-align: center;
+    font-size: 30px; 
+    margin-top: 20px; 
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 40px; /*Add margin to prevent overlap with buttons */
+}
+
+.close-button {
+    margin-left: 95%;
+    background-color:none;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 5px;
+    cursor: pointer;
+    color: white; /* White color for the close button */
+    transition: transform 0.2s ease; /*Add transition for hover effect */
+}
+.close-button:hover{
+    color: rgb(149, 41, 41);
+}
+.close-button:focus {
+    transform: scale(1.2); /* Magnify on hover */
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
+    color: white; /* Keep the color white on hover */
+}
+
+.gesture-container {
+    text-align: center; /* Center the gesture images/GIFs */
+    margin-bottom: 20px;
+}
+
+.gesture-container img {
+    max-width: 50%;  /* Adjust as needed */
+    height: auto;
+}
+/* ... other CSS ... */
+
+/* Blur effect for the background */
+body.blur {
+    filter: blur(5px); /* Adjust the blur amount as needed */
+}
+
+
+/* Style for the gesture instruction text */

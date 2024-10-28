@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnSight|Bookings and fun</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="./js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+</head>
+<body> 
+    
+    <header>
+        <a href="index.html" style="text-decoration: none;"><h1  class="logo" >InnSight</h1></a>
+        <div class="profile-container">
+            <button class="profile-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 100%; width: 100%; fill: currentcolor;"><path d="M16 .7C7.56.7.7 7.56.7 16S7.56 31.3 16 31.3 31.3 24.44 31.3 16 24.44.7 16 .7zm0 28c-4.02 0-7.6-1.88-9.93-4.81a12.43 12.43 0 0 1 6.45-4.4A6.5 6.5 0 0 1 9.5 14a6.5 6.5 0 0 1 13 0 6.51 6.51 0 0 1-3.02 5.5 12.42 12.42 0 0 1 6.45 4.4A12.67 12.67 0 0 1 16 28.7z"></path></svg>
+            </button>
+            <div class="profile-dropdown">
+                <a id ="login1" href="login.html">Login</a>
+                <a id ="signup1" href="signup.html">SignUp</a>
+                <button id="logout" style="display: none" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <form action="#" method="get" class="oval-search-panel">
+            <p class="font" style="color:#888;">
+                <input id="destination" list="destinations" class="oval-input checkin-input" placeholder="Search Destinations" style="padding: 10px; width: 170px;">
+                <datalist id="destinations">
+                    <option value="Hyderabad"></option>
+                    <option value="Mumbai"></option>
+                    <option value="Chennai"></option>
+                    <option value="Bengaluru"></option>
+                </datalist>
+            </p>            
+            <div class="separator"></div>
+            <input id ="checkindate"type="text" name="check-in" placeholder="Check-in" onfocus="(this.type='date')" class="oval-input checkin-input" required>
+            <div class="separator"></div>
+            <input id="checkoutdate" type="text" name="check-out" placeholder="Check-out" onfocus="(this.type='date')" class="oval-input checkout-input" required>
+            <button type="submit" class="oval-button" onclick="search()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;"><path fill="none" d="M13 24a11 11 0 1 0 0-22 11 11 0 0 0 0 22zm8-3 9 9"></path></svg>
+            </button>
+        </form>
+    </section>
+
+    <section class="image-gallery">
+        <div class="image-container" onclick="generateHotelInfo(0,'Quinta Da Santana Luxury Villa:Kasi,India', 'images/1.jpg', '10000', 'This is a sample hotel description.')">
+            <img id="img1" src="1.jpeg.webp" alt="Kasi, India">
+            <div class="image-info">
+                <h3 id="heading1">Kasi, India</h3>
+                <p>₹10000 per night</p>
+            </div>
+        </div>
+        <div class="image-container" onclick="generateHotelInfo(1,'Hornbill House by Ataazs Farms:Secunderabad, India', 'images/3.jpeg', '15000', 'This is a sample hotel description.')">
+            <img id="img2" src="3.jpeg.webp" alt="Secunderabad, India">
+            <div class="image-info">
+                <h3 id="heading2">Secunderabad, India</h3>
+                <p>₹15000 per night</p>
+            </div>
+        </div>
+        <div class="image-container" onclick="generateHotelInfo(2,'Cliff Valley View Cottages with swimming pool:Hyderabad, India', 'images/2.jpg', '12000', 'This is a sample hotel description.')">
+            <img id="img3" src="2.jpeg.webp" alt="Hyderabad, India">
+            <div class="image-info">
+                <h3 id="heading3">Hyderabad, India</h3>
+                <p>₹12000 per night</p>
+            </div>
+        </div>
+        <!-- Add more image containers for other hotels -->
+    </section>
+    &nbsp;
+    &nbsp;
+    <p class="footer">&copy; 2024 InnSight. All rights reserved. Contact us at <a href="mailto:innsight.booking@gmail.com" class="contact-link">innsight.booking@gmail.com</a></p>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnSight | Sign Up</title>
+    <link rel="stylesheet" href="style1.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="./js/script.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" style="text-decoration: none;"><h1  class="logo" >InnSight</h1></a>
+    </header>
+
+    <section class="hero"> 
+        <div class="oval-search-panel" style="flex-direction: column; align-items: center; text-align: center;"> 
+            <h2>Sign Up</h2>
+            <input type="text" name="name" placeholder="Full Name" class="oval-input" id ="username" required aria-label="Full Name">
+            <input type="email" name="email" placeholder="Email" class="oval-input" id="email" required aria-label="Email">
+            <input type="password" name="password" placeholder="Password" class="oval-input" id="password" required aria-label="Password">
+            <button type="submit" class="oval-button" onclick="signup(event)">Sign Up</button>
+            <p>Already have an account? <a href="login.html">Login</a></p> 
+        </div>
+    </section>
+    <p class="footer">&copy; 2024 InnSight. All rights reserved. Contact us at <a href="mailto:innsight.booking@gmail.com" class="contact-link">innsight.booking@gmail.com</a></p>
+</body>
+</html>
