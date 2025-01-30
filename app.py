@@ -9,14 +9,18 @@ import math
 import time
 import pyautogui
 from flask_pymongo import PyMongo
-from datetime import datetime
+from datetime import datetime,timedelta
 import threading
 app = Flask(__name__)
 app.config["MONGO_URI"]="mongodb://localhost:27017/hotelbooking"
+app.secret_key="Innsight@140"
+app.permanent_session_lifetime = timedelta(minutes=10)  # Set session expiration to 30 minutes
+
 mongo=PyMongo(app)
 # CORS(app,origins='http://127.0.0.1:5500',methods=['POST'])
 CORS(app, resources={r"/*": {"origins": "*"}})  # Allow all origins for testing
 socketio=SocketIO(app,cors_allowed_origins=["http://127.0.0.1:5500","http://127.0.0.1:5501"])
+session1={}
 # Initialize MediaPipe Hands
 def check_mongo_connection():
     try:
@@ -130,6 +134,22 @@ def run_gesture_model():
 
     cap.release()
     cv2.destroyAllWindows()
+@app.route('/admin-data', methods=['GET'])
+def admin_data():
+    try:
+        users = list(mongo.db.users_collection.find({}, {'_id': 1, 'username': 1, 'email': 1}))  # Include _id explicitly
+        reservations = list(mongo.db.reservation.find({}, {'_id': 1, 'email': 1, 'check_in': 1, 'check_out': 1, 'guests': 1,'total':1}))
+        
+        # Convert _id fields to strings
+        for user in users:
+            user['_id'] = str(user['_id'])
+        for reservation in reservations:
+            reservation['_id'] = str(reservation['_id'])
+        
+        return jsonify({'users': users, 'reservations': reservations})
+    except Exception as e:
+        print(f"Error fetching data: {e}")
+        return jsonify({'message': 'Error fetching admin data'}), 500
 
 @app.route('/')
 def reservation_page():
@@ -140,13 +160,41 @@ def reservation_page():
 @app.route('/index',methods=['GET'])
 def index():
     return render_template('index.html')
+@app.route('/adminlogin',methods=['GET','POST'])
+def adminlogin():
+    print("Entering login route...")
+    data = request.get_json()
+    email1 = data.get('email')
+    password2 = data.get('password')
+
+    if not email1 or not password2:
+        return jsonify({'message': 'Please fill all the fields'})
+    try:
+        user = mongo.db.admindetails.find_one({"username": email1})
+        print(user)
+        if user:
+            pass1=user['password']
+            print(pass1==password2)
+            if pass1.strip()==password2.strip(): 
+                    return jsonify({'redirect': 'admin.html'})
+            else:
+                    return jsonify({'message': 'Invalid username or password'}),401
+        else:
+            return jsonify({'message': 'User not found'}), 404
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return jsonify({'message': 'An error occurred during login'}),500
+
+def user_exists(username,email):
+    return mongo.db.admindetails.find_one({"$or":[{"username":email}]})
+def is_valid_password(password):
+    return len(password)>=8
 @app.route('/login',methods=['GET','POST'])
 def login():
     print("Entering login route...")
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
-
     if not email or not password:
         return jsonify({'message': 'Please fill all the fields'})
 
@@ -154,7 +202,8 @@ def login():
         user = mongo.db.users_collection.find_one({'email': email})  # Replace with your user collection
 
         if user and check_password_hash(user['password'], password):  # Assuming passwords are hashed
-            # session['username'] = email
+            session1['loginuser'] = email
+            print(session1['loginuser'])
             return jsonify({'redirect': 'index.html'})
         else:
             return jsonify({'message': 'Invalid username or password'}),401
@@ -205,13 +254,6 @@ def signup():
     except Exception as e:
         print(f"Error occurred: {e}")
         return jsonify({'message': 'An error occurred during signup'}), 500
-
-@app.route('/logout')
-def logout():
-    session.pop('logged_in',None)
-    session.pop('username',None)
-    flash('Logged_out!','success')
-    return redirect(url_for('login'))
 @app.route('/reserve',methods=['POST'])
 def reserve():
     print("it has entered :")
@@ -241,8 +283,11 @@ def reserve():
     if date_difference > 30:
         return jsonify({'message': 'Stay cannot be longer than 30 days'})
     k=int(date_difference)*int(rent)
+    user = session1['loginuser']
+    print(user)
     try:
         reservation={
+            'email':user,
             'check_in':check_in,
             'check_out':check_out,
             'guests':int(guests),
@@ -254,7 +299,12 @@ def reserve():
         return jsonify({'message':f'Reservation successful for {date_difference} days and total is Rs {k}'})
     except ValueError:
         return jsonify({'message':'Invalid reservation'})
-    
+@app.route('/logout')
+def logout():
+    session1.clear()
+    session.clear()
+    flash('Logged_out!','success')
+    return redirect(url_for('login'))
 @socketio.on('run_gesture')
 def run_gesture():
     # Function to run your gesture model
