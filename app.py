@@ -199,9 +199,11 @@ def login():
         return jsonify({'message': 'Please fill all the fields'})
 
     try:
-        user = mongo.db.users_collection.find_one({'email': email})  # Replace with your user collection
+        user = mongo.db.users_collection.find_one({'email': email})
+        user1 = mongo.db.users_collection.find_one({'username': email})
+        # Replace with your user collection
 
-        if user and check_password_hash(user['password'], password):  # Assuming passwords are hashed
+        if user and check_password_hash(user['password'], password) :  # Assuming passwords are hashed
             session1['loginuser'] = email
             print(session1['loginuser'])
             return jsonify({'redirect': 'index.html'})

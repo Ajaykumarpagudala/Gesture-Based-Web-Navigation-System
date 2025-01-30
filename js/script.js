@@ -154,22 +154,65 @@ function panaroma1(image){
         const checkOut = document.getElementById('check-out').value;
         const guests = document.getElementById('guests').value;
         const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    
+        // Send reservation details to the backend
+        console.log("logged in session"+isLoggedIn);
         const response = await fetch('http://localhost:5000/reserve', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ check_in: checkIn, check_out: checkOut, guests: guests,rent:rent,isloggedIN:isLoggedIn})
+            body: JSON.stringify({ check_in: checkIn, check_out: checkOut, guests: guests, rent: rent, isloggedIN: isLoggedIn })
         });
-    
+        // If the response is not OK, show the error message and stop further execution
         if (!response.ok) {
             const errorResult = await response.json();
             alert(errorResult.message);
-            return;
-        }    
-        const result = await response.json();
-        alert(result.message);
+            return; // Stop execution if reservation fails
+        }
+        const rentPerNight = parseInt(document.getElementById("hotel-rent").textContent.replace("₹", "").replace(" per night", ""));
+                        checkin1 = new Date(document.getElementById("check-in").value);
+                        checkout1 = new Date(document.getElementById("check-out").value);
+                        const nights = Math.ceil((checkout1 - checkin1) / (1000 * 60 * 60 * 24)); 
+                        if (isNaN(nights) || nights <= 0) {
+                            alert("Please select valid check-in and check-out dates.");
+                            return;
+                        }
+                        const totalCost = nights * rentPerNight;
+                        const serviceFee = Math.ceil(totalCost * 0.1);
+                        const finalAmount = totalCost + serviceFee;
+
+        // If response is successful, continue with Razorpay payment
+        const result = await response.json(); 
+        let msg=result.message;
+        if(isLoggedIn ==true){
+        const options = {
+            key: "rzp_test_0h1crh5k63OCUw", 
+            amount: finalAmount* 100, // Amount in paise
+            currency: "INR",
+            name: "Hotel Booking",
+            description: `Booking for ${nights} nights`,  // Make sure to fix this template literal
+            handler: function (paymentResponse) {
+                    alert(msg+"\n"+`Payment ID: ${paymentResponse.razorpay_payment_id}`);
+                
+                // Here, you can also make another API call to confirm the payment on the server side if needed
+            },
+            prefill: {
+                name: "Alex Carry", 
+                email: "Carry@gmail.com", 
+                contact: "9398271832", 
+            },
+            theme: {
+                color: "#3399cc",
+            },
+        };
+    
+        // Open Razorpay payment interface
+        const rzp = new Razorpay(options);
+        rzp.open();
     }
+    }
+    
         let currentImageIndex = 0;
         const images = [
             "1.jpeg.webp",
